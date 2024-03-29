@@ -13,6 +13,13 @@ class communesController extends Controller
     public function getCommunes(Request $request, $id_reg) {
         $communes = DB::connection('mysql')->table('communes')->where('id_reg', $id_reg)->get();
 
+        
+        if(env('APP_ENV') == "local") {
+            $stringLog = "Data return: ".$request->ip()." - ".json_encode($communes)." - ".date('d-m-Y h:i:s');
+            $operacion = Storage::disk('logs')->prepend('security.log', $stringLog);
+
+        }
+
         return $communes;
     }
 

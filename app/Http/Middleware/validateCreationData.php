@@ -58,6 +58,8 @@ class validateCreationData
             return response("Region and commune doesn't match", 400);
         }
 
+        $stringLog = "Data created: ".$request->ip()." - ".json_encode($request->input())." - ".date('d-m-Y h:i:s');
+        $operacion = Storage::disk('logs')->prepend('security.log', $stringLog);
 
         return $next($request);
     }
