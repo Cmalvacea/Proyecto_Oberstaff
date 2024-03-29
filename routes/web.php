@@ -51,6 +51,7 @@ Route::middleware([findToken::class])->group(function () {
     Route::prefix('view')->group(function() {
 
         /// Views
+        /// If you want to know how does the JS works for this view, go to public/assets/js/app.js
         Route::get('/customers', [CustomerController::class, 'view']);
 
     });
