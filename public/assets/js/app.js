@@ -3,6 +3,7 @@ $(document).ready(function () {
     let globalAction = "";
 
 
+    /// This functions avoid to write unallowed characters in the DNI input when creating a customer
     $('#dni').keyup(function () {
         const allowedCharacters = ["1","2","3","4","5","6","7","8","9","0"]
         let value = $(this).val()
@@ -13,6 +14,7 @@ $(document).ready(function () {
         }
     })
 
+    /// This controls the button used to search customers
     $('#searchCustomer').click(function () {
         let inputVal = $('#customerQuery').val()
         inputVal = inputVal.trim()
@@ -42,6 +44,7 @@ $(document).ready(function () {
 
     })
 
+    /// This controls the button used to display the creation panel 
 
     $('#buttonCreateCustomer').click(function () {
 
@@ -49,6 +52,7 @@ $(document).ready(function () {
     })
 
 
+    /// Controls the form used to create the customer
 
     $('form').submit(function (e) {
         e.preventDefault()
@@ -82,7 +86,7 @@ $(document).ready(function () {
     })
 
 
-
+    /// Gets the communes by region
 
     $('#id_reg').change(function () {
         var id_reg = $(this).val()
@@ -106,16 +110,15 @@ $(document).ready(function () {
         })
     })
 
-
-    /// Despliegue de pantallas de acciones
-
+    /// It closes the lockScreen
 
     $('.closeLockScreen').click(function () {
         displayLockScreen(false)
     })
 
-    /// Acciones de borrado
 
+
+    //Delete and disable functions
 
     $('.disableButton').click(function () {
 
@@ -134,6 +137,8 @@ $(document).ready(function () {
 
     })
 
+
+    /// It executes the function made to delete and disable a record
 
     $('.definitiveAction').click(function () {
 
@@ -159,6 +164,9 @@ $(document).ready(function () {
 })
 
 
+/// Display the data search
+
+
 function showData(data) {
 
     displayLockScreen(true, 'read')
@@ -173,6 +181,9 @@ function showData(data) {
 
     }
 }
+
+
+//// Formats the data to be posted
 
 function armarData(token) {
 
@@ -191,6 +202,8 @@ function armarData(token) {
     return data
 }
 
+
+/// Displays the lockscreen with its differents options (loading, creation, messages)
 
 function displayLockScreen(lockScreen = true, screen = 'create', message = "There was an error during the operation, please try again later") {
 
